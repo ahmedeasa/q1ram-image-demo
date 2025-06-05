@@ -65,8 +65,13 @@ if "encoded_image" not in st.session_state:
 if "qram_images" not in st.session_state:
     st.session_state.qram_images = None
 
+st.image("logo.png", width=200)
+st.title("Quantum Image Processing with QRAM")
+st.write("This demo showcases how to encode a grayscale image using FRQI encoding and store it in QRAM. "
+         "You can upload a grayscale image, encode it, and then write it to QRAM for further processing.")
+
 # Step 1: Upload image
-uploaded_file = st.file_uploader("Upload grayscale image", type=["png", "jpg", "jpeg"])
+uploaded_file = st.file_uploader("Step 1: Upload grayscale image", type=["png", "jpg", "jpeg"])
 if uploaded_file:
     from PIL import Image
     image = Image.open(uploaded_file).convert("L")
@@ -74,8 +79,8 @@ if uploaded_file:
     image_np = np.array(image)
     st.session_state.source_image = image_np
     col1,col2,col3 =st.columns(3)
+    st.subheader("Uploaded Image")
     with col2:
-        st.subheader("Uploaded Image")
         st.image(image_np, caption="Uploaded Image (32x32)")
 
 # Step 2: Encode Image
@@ -89,6 +94,7 @@ if st.session_state.source_image is not None:
         col1,col2,col3 =st.columns(3)
         with col2:
             # st.image(st.session_state.encoded_image)
+            fig = plt.figure(figsize=(2, 2))
             fig, ax = plt.subplots()
             ax.imshow(st.session_state.encoded_image, cmap='gray')
             ax.axis('off')
@@ -102,7 +108,7 @@ if st.session_state.source_image is not None:
     if st.session_state.qram_images:
         st.subheader("Decoded Images from QRAM")
         num_images = len(st.session_state.qram_images)
-        fig = plt.figure(figsize=(4 * num_images, 4))
+        fig = plt.figure(figsize=(2 * num_images, 2))
         for i, (k, v) in enumerate(st.session_state.qram_images.items()):
             plt.subplot(1, num_images, i + 1)
             plt.title(f"Image at address {k}")

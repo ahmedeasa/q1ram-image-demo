@@ -88,11 +88,11 @@ if st.session_state.source_image is not None:
         st.subheader("Decoded Image After FRQI Encoding")
         col1,col2,col3 =st.columns(3)
         with col2:
-            st.image(st.session_state.encoded_image, use_column_width=True)
-        # fig, ax = plt.subplots()
-        # ax.imshow(st.session_state.encoded_image, cmap='gray')
-        # ax.axis('off')
-        # st.pyplot(fig)
+            # st.image(st.session_state.encoded_image)
+            fig, ax = plt.subplots()
+            ax.imshow(st.session_state.encoded_image, cmap='gray')
+            ax.axis('off')
+            st.pyplot(fig)
 
 # Step 3: Write to QRAM
 if st.session_state.source_image is not None:

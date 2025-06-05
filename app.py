@@ -71,6 +71,8 @@ st.write("This demo showcases how to encode a grayscale image using FRQI encodin
          "You can upload a grayscale image, encode it, and then write it to QRAM for further processing.")
 
 # Step 1: Upload image
+st.subheader("Step 1: Upload Grayscale Image")
+st.image("step1.png")
 uploaded_file = st.file_uploader("Step 1: Upload grayscale image", type=["png", "jpg", "jpeg"])
 if uploaded_file:
     from PIL import Image
@@ -84,6 +86,8 @@ if uploaded_file:
         st.image(image_np, caption="Uploaded Image (32x32)")
 
 # Step 2: Encode Image
+st.subheader("Step 2: Encode Image (FRQI only)")
+st.image("step2.png")
 if st.session_state.source_image is not None:
     if st.button("Step 2: Encode Image (FRQI only)"):
         st.write(st.session_state.source_image.shape)
@@ -91,7 +95,7 @@ if st.session_state.source_image is not None:
 
     if st.session_state.encoded_image is not None:
         st.subheader("Decoded Image After FRQI Encoding")
-        col1,col2,col3 =st.columns(3)
+        col1,col2,col3 =st.columns([1,1,1])
         with col2:
             # st.image(st.session_state.encoded_image)
             fig = plt.figure(figsize=(2, 2))
@@ -101,6 +105,8 @@ if st.session_state.source_image is not None:
             st.pyplot(fig)
 
 # Step 3: Write to QRAM
+st.header("Step 3: Write to QRAM and Decode")
+st.image("step3.png")
 if st.session_state.source_image is not None:
     if st.button("Step 3: Write to QRAM and Decode"):
         st.session_state.qram_images = write_image(st.session_state.source_image)

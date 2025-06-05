@@ -65,7 +65,7 @@ if "encoded_image" not in st.session_state:
 if "qram_images" not in st.session_state:
     st.session_state.qram_images = None
 
-st.image("logo.png", width=200)
+st.image("q1ram_logo.jpg", width=200)
 st.title("Quantum Image Processing with QRAM")
 st.write("This demo showcases how to encode a grayscale image using FRQI encoding and store it in QRAM. "
          "You can upload a grayscale image, encode it, and then write it to QRAM for further processing.")

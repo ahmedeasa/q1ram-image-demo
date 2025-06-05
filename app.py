@@ -81,7 +81,7 @@ if uploaded_file:
     image_np = np.array(image)
     st.session_state.source_image = image_np
     col1,col2,col3 =st.columns(3)
-    st.subheader("Uploaded Image")
+
     with col2:
         st.image(image_np, caption="Uploaded Image (32x32)")
 
@@ -98,7 +98,7 @@ if st.session_state.source_image is not None:
         col1,col2,col3 =st.columns([1,1,1])
         with col2:
             # st.image(st.session_state.encoded_image)
-            fig = plt.figure(figsize=(2, 2))
+            fig = plt.figure(figsize=(1, 1))
             fig, ax = plt.subplots()
             ax.imshow(st.session_state.encoded_image, cmap='gray')
             ax.axis('off')

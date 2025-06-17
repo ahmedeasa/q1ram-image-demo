@@ -77,24 +77,24 @@ uploaded_file = st.file_uploader("Step 1: Upload grayscale image", type=["png", 
 if uploaded_file:
     from PIL import Image
     image = Image.open(uploaded_file).convert("L")
-    image = image.resize((32, 32))  # Resize to 32x32 pixels
+    image = image.resize((64, 64))  # Resize to 32x32 pixels
     image_np = np.array(image)
     st.session_state.source_image = image_np
     col1,col2,col3 =st.columns(3)
 
     with col2:
-        st.image(image_np, caption="Uploaded Image (32x32)")
+        st.image(image_np, caption="Uploaded Image (64x64)")
 
 # Step 2: Encode Image
-st.subheader("Step 2: Encode Image (FRQI only)")
+st.subheader("Step 2: Encode Image")
 st.image("step2.png")
 if st.session_state.source_image is not None:
-    if st.button("Step 2: Encode Image (FRQI only)"):
+    if st.button("Step 2: Encode Image"):
         st.write(st.session_state.source_image.shape)
         st.session_state.encoded_image = encode_image(st.session_state.source_image)
 
     if st.session_state.encoded_image is not None:
-        st.subheader("Decoded Image After FRQI Encoding")
+        st.subheader("Decoded Image")
         col1,col2,col3 =st.columns([1,1,1])
         with col2:
             # st.image(st.session_state.encoded_image)
